@@ -115,7 +115,7 @@ class Uygulama(App):
 #        sira2 = BoxLayout()
 #        sira3 = BoxLayout()
 #        sira4 = BoxLayout()
-#satır1
+#satırr1
 #        self.durum = Label(text= "Makine\nDurumu" , font_size=20)
 #        self.durumbuton = Button(text = "Çalışıyor", background_color = (0, 1, 0, 1))
 #        #renk kodu 0101 yeşil 1001 kırmızıdır.
