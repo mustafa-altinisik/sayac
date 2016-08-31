@@ -44,7 +44,7 @@ Builder.load_string('''
 
             Button:
                 id: durumbuton
-                text: 'Calisiyorrr'
+                text: 'Calisiyorrrr'
 
     BoxLayout:
         id: sira2
