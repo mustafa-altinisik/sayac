@@ -7,6 +7,8 @@ Config.set('graphics', 'height', '480')
 
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
 Config.set('kivy', 'keyboard_layout', 'numeric')
+from kivy.uix.gridlayout import GridLayout
+from kivy.lang import Builder
 
 
 from kivy.uix.button import Button
@@ -30,10 +32,29 @@ GPIO.setup(flashLedPin, GPIO.OUT)
 GPIO.output(flashLedPin, GPIO.LOW)
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+Builder.load_string('''
+<Demo>:
+    cols: 1
+
+    BoxLayout:
+        orientation: 'horizontal'
+        Button:
+            size_hint_x: 0.4
+            pos_hint: {'x': 0}
+            text: 'pos_hint: x=0'
 
 
 
 
+
+
+
+
+
+
+
+
+''')
 
 
 #Window.size = (800, 480)
@@ -87,6 +108,8 @@ class Uygulama(App):
         Ekran.add_widget(sira2)
         Ekran.add_widget(sira3)
         Ekran.add_widget(sira4)
+
+        GPIO.add_event_detect(buttonPin, GPIO.RISING, callback=self.tusaBasildi1, bouncetime=50)
 
         return Ekran
 
