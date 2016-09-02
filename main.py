@@ -62,7 +62,7 @@ class Uygulama(App):
                 id: "durumbuton"
                 color: (0, 1, 0, 1)
                 size_hint_x: 2
-                text: "Çalışıyorrr"
+                text: "Çalışıyorrrr"
 
 
         BoxLayout:
