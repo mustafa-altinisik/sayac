@@ -17,7 +17,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 import os
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 speed = 1.0
 beepPin = 17
 ledPin = 27
@@ -32,54 +32,6 @@ GPIO.setup(flashLedPin, GPIO.OUT)
 GPIO.output(flashLedPin, GPIO.LOW)
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-Builder.load_string('''
-<Ekran>:
-    orientation: 'horizontal'
-
-    BoxLayout:
-        id: sira1
-            Label:
-                id: durum
-                text: 'Makine Durumu'
-
-            Button:
-                id: durumbuton
-                text: 'Calisiyorrrr'
-
-    BoxLayout:
-        id: sira2
-            Label:
-                id: yapilantext
-                text: 'Yapilan Is'
-
-            TextInput:
-                id: yapilan
-                text: ''
-
-
-    BoxLayout:
-        id: sira3
-            Label:
-                id: cevrimsuresitext
-                text: 'Cevrim Suresi'
-
-            Button:
-                id: cevrimsuresi
-                text: 'Cevrim Suresi'
-
-     BoxLayout:
-        id: sira4
-            Label:
-                id: isinaditext
-                text: 'İsin Adi'
-            TextInput:
-                id: isinadi
-                text: ''
-
-
-
-
-''')
 
 
 
@@ -107,45 +59,44 @@ class Uygulama(App):
 
 #
 #
-#    def build(self, *args):
-#        self.title = u"Otomat Sayacı"
-#        Ekran = BoxLayout(orientation = 'vertical')
-#
-#        sira1 = BoxLayout()
-#        sira2 = BoxLayout()
-#        sira3 = BoxLayout()
-#        sira4 = BoxLayout()
+    def build(self, *args):
+         self.title = u"Otomat Sayacı"
+        Ekran = BoxLayout(orientation = 'vertical')
+
+        sira1 = BoxLayout()
+        sira2 = BoxLayout()
+        sira3 = BoxLayout()
+        sira4 = BoxLayout()
 #satırr1
-#        self.durum = Label(text= "Makine\nDurumu" , font_size=20)
-#        self.durumbuton = Button(text = "Çalışıyor", background_color = (0, 1, 0, 1))
-#        #renk kodu 0101 yeşil 1001 kırmızıdır.
+        self.durum = Label(text= "Makine\nDurumu" , font_size=20)
+        self.durumbuton = Button(text = "Çalışıyor", background_color = (0, 1, 0, 1))
+        #renk kodu 0101 yeşil 1001 kırmızıdır.
 #satır2
-#        self.yapilantext = Label(text= u"Yapılan İş", font_size=20)
-#        self.yapilan = TextInput(text = u"0", font_size=20)
+        self.yapilantext = Label(text= u"Yapılan İş", font_size=20)
+        self.yapilan = TextInput(text = u"0", font_size=20)
 #satır3
-#        self.cevrimsuresitext = Label(text= u"Çevrim Süresi", font_size=20)
-#        self.cevrimsuresi = Button(text = u"0.0 sn")
+        self.cevrimsuresitext = Label(text= u"Çevrim Süresi", font_size=20)
+        self.cevrimsuresi = Button(text = u"0.0 sn")
 #satır4
-#        self.isinaditext = Label(text= u"İşin Adı", font_size=20)
-#        self.isinadi = TextInput(text = "")
-#        self.isinadi.bind(on_press=self.tusaBasildi)
+        self.isinaditext = Label(text= u"İşin Adı", font_size=20)
+        self.isinadi = TextInput(text = "")
+        self.isinadi.bind(on_press=self.tusaBasildi)
+        sira1.add_widget(self.durum)
+        sira1.add_widget(self.durumbuton)
+        sira2.add_widget(self.yapilantext)
+        sira2.add_widget(self.yapilan)
+        sira3.add_widget(self.cevrimsuresitext)
+        sira3.add_widget(self.cevrimsuresi)
+        sira4.add_widget(self.isinaditext)
+        sira4.add_widget(self.isinadi)
 
-#        sira1.add_widget(self.durum)
-#        sira1.add_widget(self.durumbuton)
-#        sira2.add_widget(self.yapilantext)
-#        sira2.add_widget(self.yapilan)
-#        sira3.add_widget(self.cevrimsuresitext)
-#        sira3.add_widget(self.cevrimsuresi)
-#        sira4.add_widget(self.isinaditext)
-#        sira4.add_widget(self.isinadi)
-
-#        Ekran.add_widget(sira1)
-#        Ekran.add_widget(sira2)
-#        Ekran.add_widget(sira3)
-#        Ekran.add_widget(sira4)
+        Ekran.add_widget(sira1)
+        Ekran.add_widget(sira2)
+        Ekran.add_widget(sira3)
+        Ekran.add_widget(sira4)
 
         GPIO.add_event_detect(buttonPin, GPIO.RISING, callback=self.tusaBasildi1, bouncetime=50)
-
+        return Demo()
         return Ekran
 
 
