@@ -32,18 +32,6 @@ GPIO.setup(flashLedPin, GPIO.OUT)
 GPIO.output(flashLedPin, GPIO.LOW)
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-
-
-
-
-class Ekran(BoxLayout):
-    pass
-
-
-
-
-
-
 #Window.size = (800, 480)
 
 Window.clearcolor = (0, 0, 0, 0)
@@ -61,43 +49,55 @@ class Uygulama(App):
 #
     def build(self, *args):
          self.title = u"Otomat Sayacı"
-        Ekran = BoxLayout(orientation = 'vertical')
 
-        sira1 = BoxLayout()
-        sira2 = BoxLayout()
-        sira3 = BoxLayout()
-        sira4 = BoxLayout()
-#satırr1
-        self.durum = Label(text= "Makine\nDurumu" , font_size=20)
-        self.durumbuton = Button(text = "Çalışıyor", background_color = (0, 1, 0, 1))
-        #renk kodu 0101 yeşil 1001 kırmızıdır.
-#satır2
-        self.yapilantext = Label(text= u"Yapılan İş", font_size=20)
-        self.yapilan = TextInput(text = u"0", font_size=20)
-#satır3
-        self.cevrimsuresitext = Label(text= u"Çevrim Süresi", font_size=20)
-        self.cevrimsuresi = Button(text = u"0.0 sn")
-#satır4
-        self.isinaditext = Label(text= u"İşin Adı", font_size=20)
-        self.isinadi = TextInput(text = "")
-        self.isinadi.bind(on_press=self.tusaBasildi)
-        sira1.add_widget(self.durum)
-        sira1.add_widget(self.durumbuton)
-        sira2.add_widget(self.yapilantext)
-        sira2.add_widget(self.yapilan)
-        sira3.add_widget(self.cevrimsuresitext)
-        sira3.add_widget(self.cevrimsuresi)
-        sira4.add_widget(self.isinaditext)
-        sira4.add_widget(self.isinadi)
+    kv = '''
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            Label:
+                id: "durum"
+                text: "Makine Durumu:"
+                size_hint_x: 1
+            Button:
+                id: "durumbuton"
+                color: (0, 1, 0, 1)
+                size_hint_x: 2
+                text: "Çalışıyorr"
 
-        Ekran.add_widget(sira1)
-        Ekran.add_widget(sira2)
-        Ekran.add_widget(sira3)
-        Ekran.add_widget(sira4)
 
-        GPIO.add_event_detect(buttonPin, GPIO.RISING, callback=self.tusaBasildi1, bouncetime=50)
-        return Demo()
-        return Ekran
+        BoxLayout:
+            Label:
+                id: "yapilantext"
+                text: "Yaılan İş:"
+                size_hint_x: 1
+            TextInput:
+                id: "yapilan"
+                size_hint_x: 2
+                color: (0, 0, 0, 1)
+
+
+        BoxLayout:
+            Label:
+                id: "cevrimsuresitext"
+                text: "Çevrim Süresi:"
+                size_hint_x: 1
+            Button:
+                id: "cevrimsuresi"
+                size_hint_x: 2
+        BoxLayout:
+            Label:
+                id: "isinaditext"
+                text: "İşin Adı:"
+                size_hint_x: 1
+            TextInput:
+                id: "isinadi"
+                size_hint_x: 2
+
+    '''
+
+    GPIO.add_event_detect(buttonPin, GPIO.RISING, callback=self.tusaBasildi1, bouncetime=50)
+#    return Demo()
+#    return Ekran
 
 
 

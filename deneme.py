@@ -2,26 +2,53 @@
 
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.core.window import Window
+
+Window.clearcolor = (0, 0, 0, 0)
 
 kv='''
 BoxLayout:
     orientation: "vertical"
     BoxLayout:
         Label:
-            text: "Kullanıcı Adı:"
+            id: "durum"
+            text: "Makine Durumu:"
             size_hint_x: 1
-        TextInput:
-            size_hint_x: 5
+        Button:
+            id: "durumbuton"
+            color: (0, 1, 0, 1)
+            size_hint_x: 2
+            text: "Çalışıyor"
+
 
     BoxLayout:
         Label:
-            text: "Parola:"
+            id: "yapilantext"
+            text: "Yaılan İş:"
+            size_hint_x: 1
         TextInput:
-            password: True
+            id: "yapilan"
+            size_hint_x: 2
+            color: (0, 0, 0, 1)
+
+
     BoxLayout:
-        Widget:
+        Label:
+            id: "cevrimsuresitext"
+            text: "Çevrim Süresi:"
+            size_hint_x: 1
         Button:
-            text: "Gir"
+            id: "cevrimsuresi"
+            size_hint_x: 2
+    BoxLayout:
+        Label:
+            id: "isinaditext"
+            text: "İşin Adı:"
+            size_hint_x: 1
+        TextInput:
+            id: "isinadi"
+            size_hint_x: 2
+
 '''
 
 class girisFormu(App):
